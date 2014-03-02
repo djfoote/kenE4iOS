@@ -40,9 +40,9 @@ class Character (object):
 		self.set_frame()
 
 	def edge_collision(self, scene):
-		if self.position.x < 0 or self.position.x > scene.size.w:
+		if self.frame.left() < 0 or self.frame.right() > scene.size.w:
 			self.velocity.x *= -1
-		if self.position.y < 0 or self.position.y > scene.size.h:
+		if self.frame.bottom() < 0 or self.frame.top() > scene.size.h:
 			self.velocity.y *= -1
 
 class Vector2 ():
