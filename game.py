@@ -73,12 +73,11 @@ class Score (object):
 		self.points = 0
 
 	def draw(self, scene):
-		HEIGHT = 20
+		HEIGHT = 40
 		bottom = scene.size.h - HEIGHT
 		rect(0, bottom, scene.size.w, HEIGHT)
 		score_string = 'Your Score: ' + str(self.points)
-		text(score_string, x=scene.size.w/2, y=bottom+2)
-
+		text(score_string, x=scene.size.w/2, y=bottom + HEIGHT/2)
 
 class GameScene (Scene):
 	def setup(self):
