@@ -1,6 +1,7 @@
 from scene import *
 from random import random
 from sound import load_effect, play_effect
+from traceback import print_stack
 
 class Character (object):
 	IMG_SIZE = 128
@@ -38,6 +39,9 @@ class Vector2 ():
 		self.y = y
 
 	def __add__(self, other):
+		if type(other) != type(self):
+			print_stack()
+			print other
 		return Vector2(self.x + other.x, self.y + other.y)
 
 class GameScene (Scene):
