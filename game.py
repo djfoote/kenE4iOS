@@ -36,6 +36,7 @@ class Character (object):
 		g = gravity()
 		self.acceleration = Vector2(0, g.y)
 		self.velocity += self.acceleration
+		self.velocity *= .9
 		self.position += self.velocity
 		self.set_frame()
 
@@ -57,6 +58,9 @@ class Vector2 ():
 			print_stack()
 			print other
 		return Vector2(self.x + other.x, self.y + other.y)
+
+	def __mul__(self, c):
+		return Vector2(self.x * c, self.y * c)
 
 class GameScene (Scene):
 	def setup(self):
