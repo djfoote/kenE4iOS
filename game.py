@@ -18,8 +18,8 @@ class Character (object):
 			self.position.y - self.image_size/2)
 
 	def hit_test(self, touch):
-		frame = Rect(self.x - self.image_size/2,
-		             self.y - self.image_size/2,
+		frame = Rect(self.position.x - self.image_size/2,
+		             self.position.y - self.image_size/2,
 		             self.image_size, self.image_size)
 		return touch.location in frame
 
