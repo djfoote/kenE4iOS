@@ -13,25 +13,37 @@ class Character (object):
 		self.acceleration = Vector2(0, 0)
 		self.image = 'Boy'
 		self.sound = 'Footstep'
+		self.set_frame()
+
+	def set_frame(self):
+		self.frame = Rect(self.position.x - self.image_size/2,
+		             self.position.y - self.image_size/2,
+		             self.image_size, self.image_size)
 
 	def draw(self):
 		image(self.image, self.position.x - self.image_size/2, 
 			self.position.y - self.image_size/2)
 
 	def hit_test(self, touch):
-		frame = Rect(self.position.x - self.image_size/2,
-		             self.position.y - self.image_size/2,
-		             self.image_size, self.image_size)
-		return touch.location in frame
+		return touch.location in self.frame
 
 	def touch_vector(self, touch):
 		return Vector2(self.position.x - touch.location.x,
 			self.position.y - touch.location.y)
 
-	def move(self, g):
+	def move(self, scene):
+		self.edge_collision
+		g = gravity()
 		self.acceleration = Vector2(0, g.y)
 		self.velocity += self.acceleration
 		self.position += self.velocity
+		self.set_frame()
+
+	def edge_collision(self, scene):
+		if self.position.x < 0 or self.position.x > scene.size.w:
+			self.velocity.x *= -1
+		if self.position.y < 0 or self.position.y > scene.size.h:
+			self.velocity.y *= -1
 
 class Vector2 ():
 	def __init__(self, x, y):
@@ -59,7 +71,7 @@ class GameScene (Scene):
 		self.bg_color.b = \
 				max(0, min(1, self.bg_color.b + (random() - 0.5) / 30))
 		background(self.bg_color.r, self.bg_color.g, self.bg_color.b)
-		self.kenny.move(gravity())
+		self.kenny.move(self)
 		self.kenny.draw()
 
 	def touch_began(self, touch):
