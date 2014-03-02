@@ -36,7 +36,7 @@ class Character (object):
 		g = gravity()
 		self.acceleration = Vector2(0, g.y)
 		self.velocity += self.acceleration
-		self.velocity *= .9
+		self.velocity *= .99
 		self.position += self.velocity
 		self.set_frame()
 
