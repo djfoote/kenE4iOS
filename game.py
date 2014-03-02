@@ -32,7 +32,7 @@ class Character (object):
 			self.position.y - touch.location.y)
 
 	def move(self, scene):
-		self.edge_collision
+		self.edge_collision(scene)
 		g = gravity()
 		self.acceleration = Vector2(0, g.y)
 		self.velocity += self.acceleration
