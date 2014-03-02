@@ -17,6 +17,6 @@ class GameScene (Scene):
 	def draw(self):
 		self.kenny.draw()
 
-run(GameScene)
+run(GameScene())
 
 
