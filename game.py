@@ -65,7 +65,7 @@ class GameScene (Scene):
 	def touch_began(self, touch):
 		if self.kenny.hit_test(touch):
 			play_effect('Footstep')
-			self.kenny.velocity += self.kenny.touch_vector
+			self.kenny.velocity += self.kenny.touch_vector(touch)
 			
 
 run(GameScene())
