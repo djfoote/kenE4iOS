@@ -26,18 +26,18 @@ class Character (object):
 
 class GameScene (Scene):
 	def setup(self):
-		self.kenny = Character(self.size.w/2, self.size.h/2)
+		self.kenny = Character(self.size.w/2, self.size.h/2, 1)
 		load_effect('Footstep')
 		load_image('Boy')
 		self.bg_color = Color(0, 0, 0)
 
 	def draw(self):
-		self.bg_color.r = 
-				max(0, min(1, self.bg_color.r + (random() - 1/2) / 50))
-		self.bg_color.g = 
-				max(0, min(1, self.bg_color.g + (random() - 1/2) / 50))
-		self.bg_color.b = 
-				max(0, min(1, self.bg_color.b + (random() - 1/2) / 50))
+		self.bg_color.r = \
+				max(0, min(1, self.bg_color.r + (random() - 1/2) / 30))
+		self.bg_color.g = \
+				max(0, min(1, self.bg_color.g + (random() - 1/2) / 30))
+		self.bg_color.b = \
+				max(0, min(1, self.bg_color.b + (random() - 1/2) / 30))
 		background(self.bg_color.r, self.bg_color.g, self.bg_color.b)
 		self.kenny.draw()
 
