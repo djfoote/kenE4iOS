@@ -54,7 +54,7 @@ class Character (object):
 			self.position.y = scene.size.h - self.image_size/2
 			self.velocity.y *= -1
 
-class Vector2 ():
+class Vector2 (object):
 	def __init__(self, x, y):
 		self.x = x
 		self.y = y
@@ -68,12 +68,25 @@ class Vector2 ():
 	def __mul__(self, c):
 		return Vector2(self.x * c, self.y * c)
 
+class Score (object):
+	def __init__(self):
+		self.points = 0
+
+	def draw(self, scene):
+		HEIGHT = 20
+		bottom = scene.size.h - HEIGHT
+		rect(0, bottom, scene.size.w, HEIGHT)
+		score_string = 'Your Score: ' + str(self.points)
+		text(score_string, x=scene.size.w/2, y=bottom+2)
+
+
 class GameScene (Scene):
 	def setup(self):
 		self.kenny = Character(self.size.w/2, self.size.h/2, 1)
 		load_effect('Footstep')
 		load_image('Boy')
 		self.bg_color = Color(0, 0, 0)
+		self.score = Score()
 
 	def draw(self):
 		self.bg_color.r = \
@@ -83,6 +96,7 @@ class GameScene (Scene):
 		self.bg_color.b = \
 				max(0, min(1, self.bg_color.b + (random() - 0.5) / 30))
 		background(self.bg_color.r, self.bg_color.g, self.bg_color.b)
+		self.score.draw(self)
 		self.kenny.move(self)
 		self.kenny.draw()
 
@@ -90,6 +104,7 @@ class GameScene (Scene):
 		if self.kenny.hit_test(touch):
 			play_effect('Footstep')
 			self.kenny.velocity += self.kenny.touch_vector(touch)
+			self.score.points += 1
 			
 
 run(GameScene())
