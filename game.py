@@ -33,11 +33,11 @@ class GameScene (Scene):
 
 	def draw(self):
 		self.bg_color.r = \
-				max(0, min(1, self.bg_color.r + (random() - 1/2) / 30))
+				max(0, min(1, self.bg_color.r + (random() - 0.5) / 30))
 		self.bg_color.g = \
-				max(0, min(1, self.bg_color.g + (random() - 1/2) / 30))
+				max(0, min(1, self.bg_color.g + (random() - 0.5) / 30))
 		self.bg_color.b = \
-				max(0, min(1, self.bg_color.b + (random() - 1/2) / 30))
+				max(0, min(1, self.bg_color.b + (random() - 0.5) / 30))
 		background(self.bg_color.r, self.bg_color.g, self.bg_color.b)
 		self.kenny.draw()
 
@@ -48,6 +48,6 @@ class GameScene (Scene):
 run(GameScene())
 
 class Vector2 ():
-	def __init__(x, y):
+	def __init__(self, x, y):
 		self.x = x
 		self.y = y
