@@ -32,20 +32,22 @@ class Character (object):
 			self.position.y - touch.location.y)
 
 	def move(self, scene):
-		self.edge_collision(scene)
 		g = gravity()
 		self.acceleration = Vector2(0, g.y)
 		self.velocity += self.acceleration
 		self.velocity *= .97
 		self.position += self.velocity
+		self.edge_collision(scene)
 		self.set_frame()
 
 	def edge_collision(self, scene):
 		if (self.velocity.x < 0 and self.frame.left() < 0) or \
 			(self.velocity.x > 0 and self.frame.right() > scene.size.w):
+			self.position.x = 0
 			self.velocity.x *= -1
 		if (self.velocity.y < 0 and self.frame.bottom() < 0) or \
 			(self.velocity.y > 0 and self.frame.top() > scene.size.h):
+			self.position.y = 0
 			self.velocity.y *= -1
 
 class Vector2 ():
