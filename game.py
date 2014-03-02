@@ -33,7 +33,7 @@ class Character (object):
 
 	def move(self, scene):
 		g = gravity()
-		self.acceleration = Vector2(0, g.y)
+		self.acceleration = Vector2(g.x, g.y)
 		self.velocity += self.acceleration
 		self.velocity *= .97 #dampening
 		self.position += self.velocity
