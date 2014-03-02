@@ -28,7 +28,7 @@ class Character (object):
 			self.position.y - touch.location.y)
 
 	def move(self, g):
-		self.acceleration = g.y
+		self.acceleration = Vector2(0, g.y)
 		self.velocity += self.acceleration
 		self.position += self.velocity
 
