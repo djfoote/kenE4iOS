@@ -105,6 +105,9 @@ class GameScene (Scene):
 			play_effect('Footstep')
 			self.kenny.velocity += self.kenny.touch_vector(touch)
 			self.score.points += 1
+
+	def touch_moved(self, touch):
+		self.touch_began(touch)
 			
 
 run(GameScene())
